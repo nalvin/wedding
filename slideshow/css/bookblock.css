@@ -1,7 +1,36 @@
-body, html { font-size: 100%; padding: 0; margin: 0; height: 650px;}
+body, html { font-size: 100%; padding: 0; margin: 0; height: 600px; overflow: hidden;}
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
+
+.bb-custom-wrapper {
+	width: 1200px;
+	height: 550px;
+	position: relative;
+	margin: 10px 10px;
+	text-align: center;
+}
+
+.container {
+	height: 100%;
+	margin: 20px 0px 0px 20px;
+}
+
+.bb-custom-wrapper .bb-bookblock {
+	box-shadow: 0 12px 10px -10px rgba(81,64,49,0.6);
+}
+
+.bb-bookblock {
+	width: 1200px;
+	height: 550px;
+	margin: 0;
+	position: relative;
+	z-index: 100;
+	-webkit-perspective: 2000px;
+	perspective: 2000px;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
 
 .middle_line
 {
@@ -15,10 +44,18 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 650px;}
 	text-align: left;
 }
 
+.user_name
+{
+	height:150px;
+	font-size: 30px;
+	text-align: left;
+	margin: 60px;
+}
+
 .my_profileImage
 {
-	width:50px;
-	height:50px;
+	width:100px;
+	height:100px;
 	border-radius: 50%;
 }
 
@@ -28,8 +65,8 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 650px;}
 	height:500px;
 	margin: 25px 15px;
 	object-fit: contain;
-	border: 1px solid #ddd;
-    border-radius: 4px;
+	//border: 1px solid #ddd;
+    //border-radius: 4px;
     padding: 5px;
 }
 
@@ -38,34 +75,6 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 650px;}
 	background: #fff2e3;
 }
 
-.container {
-	height: 100%;
-	margin: 80px 0px 0px 80px;
-}
-
-.bb-custom-wrapper {
-	width: 1200px;
-	height: 550px;
-	position: relative;
-	margin: 40px 40px;
-	text-align: center;
-}
-
-.bb-custom-wrapper .bb-bookblock {
-	box-shadow: 0 12px 20px -10px rgba(81,64,49,0.6);
-}
-
-.bb-bookblock {
-	width: 1200px;
-	height: 550px;
-	margin: 0;
-	position: relative;
-	z-index: 100;
-	-webkit-perspective: 1300px;
-	perspective: 1300px;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
 
 .bb-page {
 	position: absolute;
