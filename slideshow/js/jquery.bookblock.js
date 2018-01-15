@@ -8,7 +8,10 @@ var userIdList = [];
 var token = "120177205344103|FUBCjYJTBgpcnizpbt3bq2wkfXE";
 var targetId = "1569234599765262";
 var url = "https://graph.facebook.com/v2.10/" + targetId + "/feed?fields=full_picture,message,from&access_token=" + token;
-var default_pic = "https://scontent.xx.fbcdn.net/v/t1.0-9/21740391_1702534819777619_3051812303718747661_n.jpg?oh=8b88c90321d890bbf9c5dd5ae02c95c3&oe=5A4995C2";
+
+var default_pic = ["https://lh6.googleusercontent.com/AgrsGrafarC4-S_SOZgsxWOYOGJjGYkK8xrKJLFZOcL4Rk3Dkz0PLtPVTmNS-C6fReJM7FPgS2UeeXIW1Qzv=w1842-h967-rw",
+				   "https://lh6.googleusercontent.com/gJxymPGP85SewqQyVP65qpY_CNxcYJ3QLB3q9oiKFRNbicuDIJfHK8mn2wjU7RQmppM4tYF96RS-kN115P6F=w1842-h967-rw"];
+var default_pic_len = default_pic.length;
 function FBquery() 
 {	
 	var xmlhttp = new XMLHttpRequest();
@@ -24,11 +27,11 @@ function FBquery()
 					if (myArr[idx].full_picture)	{
 						imageList.push(myArr[idx].full_picture);
 					}else {
-						imageList.push(default_pic);
+						imageList.push(default_pic[idx%default_pic_len]);
 					}
 					userNameList.push(myArr[idx].from.name);
 					var tmpId = myArr[idx].from.id;
-					userIdList.push("http://graph.facebook.com/" + tmpId + "/picture?type=square");
+					userIdList.push("http://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=142");
 				}
 				if(imageList.length < 60){
 					queryIndex = 10;
@@ -36,7 +39,7 @@ function FBquery()
 					queryIndex = imageList.length - 1;
 				}
 				setTimeout(showSlides, 5000); // Change image every 5 seconds
-				window.console.log(messageList);
+				window.console.log(imageList);
 			}
 		};
 	xmlhttp.open("GET", url, true);
