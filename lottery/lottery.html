@@ -9,16 +9,24 @@
 <body>
 
 <div id="wrapper">
-    <div id="lottery">
+    <div id="lottery" >
+    	<div id="congradulation" style="display:none">
+    		<img src="pic/maruco.gif">
+    		<img src="pic/congradulation2.gif">
+    		<img src="pic/maruco.gif">
+    	</div>
 		<div id="container">
 			<div id="lottery-hero1" class="lottery-hero">
-				<img src="pic/" alt="" style="display:none" />
+				<img src="pic/" alt="" style="display:none">
+				<p id="lottery-hero1-p"></p>
 			</div>
 			<div id="lottery-hero2" class="lottery-hero">
-				<img src="pic/" alt="" style="display:none" />
+				<img src="pic/" alt="" style="display:none" >
+				<p id="lottery-hero2-p"></p>
 			</div>
 			<div id="lottery-hero3" class="lottery-hero">
-				<img src="pic/" alt="" style="display:none" />
+				<img src="pic/" alt="" style="display:none" >
+				<p id="lottery-hero3-p"></p>
 			</div>
 		</div>
 
@@ -27,8 +35,10 @@
             </ul>
         </div>
         <div id="lottery-control">
-            <a href="#" onclick="Lottery.start()">START</a>
-            <a href="#" onclick="Lottery.stop()">STOP</a>
+            <a id="click_start" href="#" onclick="Lottery.start()">START    </a>
+            <a id="click_first" href="#" onclick="Lottery.stop()" style="display:none">FIRST    </a>
+            <a id="click_second" href='#' onclick="Lottery.second()" style="display:none">SECOND    </a>
+            <a id="click_third" href='#' onclick="Lottery.third()" style="display:none">THIRD</a>
         </div>
     </div>
 </div>

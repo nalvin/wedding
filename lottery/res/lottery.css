@@ -3,13 +3,21 @@ body{
 }
 
 * {margin: 0; padding: 0;}
-#container {height: 100%; width:100%; font-size: 0;}
-#lottery-hero1, #lottery-hero2, #lottery-hero3 
-{display: inline-block; 
-*display: inline; 
-zoom: 1; 
-vertical-align: top; 
-font-size: 12px;}
+#container {
+  height: 100%; 
+  width:100%; 
+  font-size: 0;
+}
+#container p{
+  font-size: 30px;  
+}
+#lottery-hero1, #lottery-hero2, #lottery-hero3 {
+  display: inline-block; 
+  *display: inline; 
+  zoom: 1; 
+  vertical-align: top; 
+  font-size: 12px;
+}
 #lottery-hero1 {width: 33%; }
 #lottery-hero2 {width: 33%; }
 #lottery-hero3 {width: 33%; }
@@ -49,20 +57,15 @@ font-size: 12px;}
 #lottery-control {
   height: 14px;
   margin: 40px auto 0;
-  width: 100px;
+  width: 1000px;
   font-size: 18px;
 }
 
 #lottery-control a{
-    float: right;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-#lottery-control a:first-child{
     float: left;
-    font-size: 16px;
+    font-size: 30px;
     font-weight: 700;
+    width: 200px;
 }
 
 #lottery-container {

@@ -7,9 +7,10 @@
 /*
 Fix old IE.
 */
-var token = "120177205344103|FUBCjYJTBgpcnizpbt3bq2wkfXE";
+var token = "EAABtTOZBid2cBAPSsPpnsZC24oCprkCWCgZAKsK0jmnxuNux3r58mKlVxLKmY13XeNKvqGPChLeJ7rkUZC04zCOCxTXaxf4htbrwLuZAqZCaZCcphgERBSnbK8CzHNrVuDyr2I37jFGpPZBzSbw5zOFwHSWrvIn3t8GopTtKsmL5XQZDZD";
 var targetId = "1569234599765262";
 var url = "https://graph.facebook.com/v2.10/" + targetId + "/feed?fields=full_picture,message,from&access_token=" + token;
+var idList = [];
 function FBquery() 
 {	
 	var xmlhttp = new XMLHttpRequest();
@@ -23,7 +24,8 @@ function FBquery()
 					var txt = document.createElement("div");
 					txt.innerHTML=(myArr[idx].from.name);
 					var tmpId = myArr[idx].from.id;
-					img.src = ("http://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=142");
+					idList.push(tmpId);
+					img.src = ("http://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=200");
 					
 					li.appendChild(img);
 					li.appendChild(txt);
@@ -39,9 +41,11 @@ function FBquery()
 
 
 var timer           = null,
-      itemWidth       = 142,
-      itemCount       = 0,
-      curPos          = 0;
+    itemWidth       = 142,
+    itemCount       = 0,
+    curPos          = 0;
+
+var selectedList = [];
 
 
 var Lottery = (function() {
@@ -68,48 +72,88 @@ var Lottery = (function() {
       $content.css("left", curPos);
     }, 25);
     $hero.hide();
+
+    var u_hide = document.getElementById("click_start");
+    u_hide.style.display = "none";
+
+    var u_show = document.getElementById("click_first");
+    u_show.style.display = "block";
   };
 
   var stop = function() {
     clearInterval(timer);
     timer = null;
-	var selectedList = []
+	
+	var selectedName = [];
 	while(selectedList.length < 3){
 		var selected  = Math.floor(Math.random() * itemCount);
-		if(!selectedList.includes(selected)){
+		if(!selectedName.includes(idList[selected])){
 			selectedList.push(selected);
+			selectedName.push(idList[selected]);
 			console.log(selected);
 		}
 	}
-    setCurIdx(selectedList);
+    setCurIdx();
+  };
+
+  //Index: first item on the left
+  var setCurIdx = function() {
+	var x = document.getElementById("lottery-container");
+	x.style.display = "none";
+	
+	var hero           = $("#lottery-hero1 img");
+	var name           = document.getElementById("lottery-hero1-p");
+    var showimg = $("#lottery-container li img");
+    var showtxt = $("#lottery-container li div");
+    var imgUrl = showimg.eq(selectedList[0]).attr("src");
+    name.innerHTML = showtxt[selectedList[0]].innerHTML;
+    hero.attr("src", imgUrl).show("slow"); 
+
+    var congradulation = document.getElementById("congradulation");
+    congradulation.style.display = "block";
+
+    var u_hide = document.getElementById("click_first");
+    u_hide.style.display = "none";
+
+    var u_show = document.getElementById("click_second");
+    u_show.style.display = "block";
+  };
+
+  var second = function() {
+  	var hero           = $("#lottery-hero2 img");
+	var name           = document.getElementById("lottery-hero2-p");
+    var showimg = $("#lottery-container li img");
+    var showtxt = $("#lottery-container li div");
+    var imgUrl = showimg.eq(selectedList[1]).attr("src");
+    name.innerHTML = showtxt[selectedList[1]].innerHTML;
+    hero.attr("src", imgUrl).show("slow"); 
+
+    var u_hide = document.getElementById("click_second");
+    u_hide.style.display = "none";
+
+    var u_show = document.getElementById("click_third");
+    u_show.style.display = "block";
+  };
+
+  var third = function() {
+  	var hero           = $("#lottery-hero3 img");
+	var name           = document.getElementById("lottery-hero3-p");
+    var showimg = $("#lottery-container li img");
+    var showtxt = $("#lottery-container li div");
+    var imgUrl = showimg.eq(selectedList[2]).attr("src");
+    name.innerHTML = showtxt[selectedList[2]].innerHTML;
+    hero.attr("src", imgUrl).show("slow");
+
+    var u_hide = document.getElementById("click_second");
+    u_hide.style.display = "none";
+
+    var u_show = document.getElementById("click_third");
+    u_show.style.display = "none";
   };
 
   var running = function() {
     return timer != null;
   };
-
-  //Index: first item on the left
-  var setCurIdx = function(idx) {
-	var x = document.getElementById("lottery-container");
-	x.style.display = "none";
-	
-	var $hero           = $("#lottery-hero1 img");
-    var $items = $("#lottery li img");
-    var imgUrl = $items.eq(idx[0]).attr("src");
-    $hero.attr("src", imgUrl).show("slow");
-
-	var $hero           = $("#lottery-hero2 img");
-    var $items = $("#lottery li img");
-    var imgUrl = $items.eq(idx[1]).attr("src");
-    $hero.attr("src", imgUrl).show("slow");
-	
-	var $hero           = $("#lottery-hero3 img");
-    var $items = $("#lottery li img");
-    var imgUrl = $items.eq(idx[2]).attr("src");
-    $hero.attr("src", imgUrl).show("slow");
-    
-  };
-
 
   return {
       init: init
@@ -117,6 +161,8 @@ var Lottery = (function() {
     , stop: stop
     , running: running
     , setCurIdx: setCurIdx
+    , second: second
+    , third: third
   };
 
 })();

@@ -5,12 +5,21 @@ var messageList = [];
 var imageList = [];
 var userNameList = [];
 var userIdList = [];
-var token = "120177205344103|FUBCjYJTBgpcnizpbt3bq2wkfXE";
+var token = "EAABtTOZBid2cBAPSsPpnsZC24oCprkCWCgZAKsK0jmnxuNux3r58mKlVxLKmY13XeNKvqGPChLeJ7rkUZC04zCOCxTXaxf4htbrwLuZAqZCaZCcphgERBSnbK8CzHNrVuDyr2I37jFGpPZBzSbw5zOFwHSWrvIn3t8GopTtKsmL5XQZDZD";
 var targetId = "1569234599765262";
 var url = "https://graph.facebook.com/v2.10/" + targetId + "/feed?fields=full_picture,message,from&access_token=" + token;
 
-var default_pic = ["https://lh6.googleusercontent.com/AgrsGrafarC4-S_SOZgsxWOYOGJjGYkK8xrKJLFZOcL4Rk3Dkz0PLtPVTmNS-C6fReJM7FPgS2UeeXIW1Qzv=w1842-h967-rw",
-				   "https://lh6.googleusercontent.com/gJxymPGP85SewqQyVP65qpY_CNxcYJ3QLB3q9oiKFRNbicuDIJfHK8mn2wjU7RQmppM4tYF96RS-kN115P6F=w1842-h967-rw"];
+var default_pic = ["./pic/IMG_6395.jpg", "./pic/IMG_6409.jpg", "./pic/IMG_6413.jpg", "./pic/IMG_6416.jpg",
+                   "./pic/IMG_6427.jpg", "./pic/IMG_6436.jpg", "./pic/IMG_6467.jpg", "./pic/IMG_6469.jpg",
+                   "./pic/IMG_6481.jpg", "./pic/IMG_6494.jpg", "./pic/IMG_6511.jpg", "./pic/IMG_6523.jpg",
+                   "./pic/IMG_6531.jpg", "./pic/IMG_6538.jpg", "./pic/IMG_6540.jpg", "./pic/IMG_6542.jpg",
+                   "./pic/IMG_6544.jpg", "./pic/IMG_6560.jpg", "./pic/IMG_6566.jpg", "./pic/IMG_6577.jpg",
+                   "./pic/IMG_6589.jpg", "./pic/IMG_6612.jpg", "./pic/IMG_6619.jpg", "./pic/IMG_6623.jpg",
+                   "./pic/IMG_6624.jpg", "./pic/IMG_6627.jpg", "./pic/IMG_6632.jpg", "./pic/IMG_6647.jpg",
+                   "./pic/IMG_6657.jpg", "./pic/IMG_6679.jpg", "./pic/IMG_6686.jpg", "./pic/IMG_6689.jpg",
+                   "./pic/IMG_6714.jpg", "./pic/IMG_6715.jpg", "./pic/IMG_6716.jpg", "./pic/IMG_6719.jpg",
+                   "./pic/IMG_6720.jpg", "./pic/IMG_6731.jpg", "./pic/IMG_6748.jpg", "./pic/IMG_6752.jpg",
+                   "./pic/IMG_6778.jpg" ];
 var default_pic_len = default_pic.length;
 function FBquery() 
 {	
@@ -22,6 +31,7 @@ function FBquery()
 				imageList = [];
 				userNameList = [];
 				userIdList = [];
+				window.console.log(myArr);
 				for (idx = 0; idx < myArr.length; idx++){
 					messageList.push(myArr[idx].message);
 					if (myArr[idx].full_picture)	{
@@ -29,6 +39,7 @@ function FBquery()
 					}else {
 						imageList.push(default_pic[idx%default_pic_len]);
 					}
+					window.console.log(myArr[idx].from);
 					userNameList.push(myArr[idx].from.name);
 					var tmpId = myArr[idx].from.id;
 					userIdList.push("http://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=142");
