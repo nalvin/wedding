@@ -5,9 +5,9 @@ var messageList = [];
 var imageList = [];
 var userNameList = [];
 var userIdList = [];
-var token = "EAABtTOZBid2cBAPSsPpnsZC24oCprkCWCgZAKsK0jmnxuNux3r58mKlVxLKmY13XeNKvqGPChLeJ7rkUZC04zCOCxTXaxf4htbrwLuZAqZCaZCcphgERBSnbK8CzHNrVuDyr2I37jFGpPZBzSbw5zOFwHSWrvIn3t8GopTtKsmL5XQZDZD";
-var targetId = "1569234599765262";
-var url = "https://graph.facebook.com/v2.10/" + targetId + "/feed?fields=full_picture,message,from&access_token=" + token;
+var token = "EAAfsfu4IPaIBAC2WCRnM3etjh1BNLxOAGghcjRQAQqAKXfOrZA69MKiqwDZCKWQCAfsvjB6VRejWXv6udn5puMeFDwNfJhw0pJBmrKQqfhJq41r6xJMhZAlN8lyq8JmLhbESSia5Ha4jGMI2wX272QybPZB6NQSR1STYv3LZCdbN8F1XxqayI";
+var targetId = "301689930623279";
+var url = "https://graph.facebook.com/v3.1/" + targetId + "/feed?fields=message,from&access_token=" + token;
 
 var default_pic = ["./pic/IMG_6395.jpg", "./pic/IMG_6409.jpg", "./pic/IMG_6413.jpg", "./pic/IMG_6416.jpg",
                    "./pic/IMG_6427.jpg", "./pic/IMG_6436.jpg", "./pic/IMG_6467.jpg", "./pic/IMG_6469.jpg",
@@ -42,7 +42,7 @@ function FBquery()
 					window.console.log(myArr[idx].from);
 					userNameList.push(myArr[idx].from.name);
 					var tmpId = myArr[idx].from.id;
-					userIdList.push("http://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=142");
+					userIdList.push("https://graph.facebook.com/" + tmpId + "/picture?type=large&redirect=true&height=142&access_token="+token);
 				}
 				if(imageList.length < 60){
 					queryIndex = 10;
